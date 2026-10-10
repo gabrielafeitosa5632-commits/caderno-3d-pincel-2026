@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Protótipo do Caderno Digital Ciência, Memória e Diversidade em Circulação — PINCEL 2026."
+    />
+    <meta name="theme-color" content="#173f35" />
+    <title>Caderno 3D — Ciência, Memória e Diversidade</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#bookScene">Pular para o conteúdo do caderno</a>
+
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+
+    <div class="app-shell">
+      <header class="topbar" aria-label="Barra do projeto">
+        <a class="identity" href="#" id="homeLink" aria-label="Voltar à capa">
+          <span class="identity-mark" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+          </span>
+          <span>
+            <strong>Ciência · Memória · Diversidade</strong>
+            <small>Caderno digital · PINCEL 2026</small>
+          </span>
+        </a>
+
+        <div class="project-status" aria-label="Estado editorial do protótipo">
+          <span class="status-pulse" aria-hidden="true"></span>
+          Protótipo navegável
+        </div>
+
+        <div class="access-tools" aria-label="Preferências de leitura">
+          <button class="tool-button" id="motionButton" type="button" aria-pressed="false">
+            <span aria-hidden="true">◇</span>
+            <b>Modo 2D</b>
+          </button>
+          <button class="tool-button" id="contrastButton" type="button" aria-pressed="false">
+            <span aria-hidden="true">◐</span>
+            <b>Contraste</b>
+          </button>
+          <button class="tool-button compact" id="fontButton" type="button" aria-label="Aumentar tamanho do texto">
+            <b>Aa</b>
+          </button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <nav class="chapter-rail" aria-label="Capítulos do caderno">
+          <p class="rail-label">Percurso</p>
+          <ol id="chapterList"></ol>
+          <div class="rail-meter" aria-hidden="true">
+            <span id="railProgress"></span>
+          </div>
+        </nav>
+
+        <section class="stage" aria-label="Caderno interativo">
+          <div class="stage-header">
+            <div>
+              <span class="eyebrow" id="chapterEyebrow">Caderno de campo digital</span>
+              <h1 id="stageTitle">Abra para começar o percurso</h1>
+            </div>
+            <button class="index-button" id="indexButton" type="button" aria-haspopup="dialog">
+              <span aria-hidden="true">☰</span>
+              Sumário
+            </button>
+          </div>
+
+          <div class="book-scene" id="bookScene" tabindex="-1">
+            <div class="cover-scene" id="coverScene">
+              <section class="cover" aria-labelledby="coverTitle">
+                <div class="cover-edge" aria-hidden="true"></div>
+                <div class="cover-orbit orbit-one" aria-hidden="true"></div>
+                <div class="cover-orbit orbit-two" aria-hidden="true"></div>
+                <div class="cover-grid" aria-hidden="true"></div>
+
+                <div class="cover-topline">
+                  <span>Projeto de Cultura</span>
+                  <span>PINCEL · 2026</span>
+                </div>
+
+                <div class="cover-copy">
+                  <p class="cover-kicker">Caderno digital interativo</p>
+                  <h2 id="coverTitle">Ciência,<br />Memória <em>e</em><br />Diversidade</h2>
+                  <p class="cover-subtitle">em circulação</p>
+                  <p class="cover-description">
+                    Vivências culturais em Viçosa e integração estudantil no IFB Campus Planaltina.
+                  </p>
+                </div>
+
+                <div class="cover-route" aria-label="Percurso Planaltina a Viçosa">
+                  <span class="route-dot"></span>
+                  <span>Planaltina · DF</span>
+                  <i aria-hidden="true"></i>
+                  <span>Viçosa · MG</span>
+                  <span class="route-dot"></span>
+                </div>
+
+                <button class="open-book-button" id="openBookButton" type="button">
+                  <span>Abrir o caderno</span>
+                  <span class="button-arrow" aria-hidden="true">↗</span>
+                </button>
+
+                <p class="cover-note">Uma interface-conceito. Conteúdos previstos estão identificados ao longo das páginas.</p>
+              </section>
+              <div class="cover-pages" aria-hidden="true"></div>
+            </div>
+
+            <section class="book" id="bookContent" aria-label="Páginas do caderno" hidden>
+              <div class="book-rings" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <article class="page page-left" id="leftPage" tabindex="-1"></article>
+              <div class="book-spine" aria-hidden="true"></div>
+              <article class="page page-right" id="rightPage" tabindex="-1"></article>
+              <div class="flip-leaf" id="flipLeaf" aria-hidden="true">
+                <div class="flip-face flip-front"></div>
+                <div class="flip-face flip-back"></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="book-controls" id="bookControls" hidden>
+            <button class="nav-button prev" id="prevButton" type="button">
+              <span aria-hidden="true">←</span>
+              <span><small>Voltar</small><b>Página anterior</b></span>
+            </button>
+
+            <div class="page-progress" aria-live="polite">
+              <div class="progress-track" aria-hidden="true"><span id="pageProgress"></span></div>
+              <p><strong id="pageCounter">01–02</strong> <span id="pageTotal">de 14 páginas</span></p>
+              <small>Use as setas do teclado para folhear</small>
+            </div>
+
+            <button class="nav-button next" id="nextButton" type="button">
+              <span><small>Continuar</small><b>Próxima página</b></span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </section>
+
+        <aside class="context-panel" id="contextPanel" aria-label="Contexto da página">
+          <div class="context-card">
+            <p class="context-label">Neste capítulo</p>
+            <h2 id="contextTitle">Comece pela capa</h2>
+            <p id="contextText">Este caderno transforma o percurso do projeto em uma experiência que pode ser folheada.</p>
+          </div>
+
+          <div class="state-legend">
+            <p class="context-label">Legenda editorial</p>
+            <ul>
+              <li><span class="state-dot factual"></span><span><b>Da proposta</b> Conteúdo já descrito no projeto.</span></li>
+              <li><span class="state-dot planned"></span><span><b>Previsto</b> Depende de confirmação ou realização.</span></li>
+              <li><span class="state-dot demo"></span><span><b>Demonstração</b> Exemplo criado para o protótipo.</span></li>
+            </ul>
+          </div>
+
+          <button class="linear-button" id="linearButton" type="button">
+            <span aria-hidden="true">≡</span>
+            <span><b>Modo leitura</b><small>Conteúdo em sequência linear</small></span>
+          </button>
+        </aside>
+      </main>
+    </div>
+
+    <dialog class="drawer-dialog" id="indexDialog" aria-labelledby="indexTitle">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">Navegação direta</p>
+          <h2 id="indexTitle">Sumário do caderno</h2>
+        </div>
+        <button class="close-button" data-close-dialog type="button" aria-label="Fechar sumário">×</button>
+      </div>
+      <div class="dialog-content index-grid" id="indexGrid"></div>
+      <div class="dialog-utilities" aria-label="Opções de acessibilidade">
+        <button type="button" data-open-linear><span aria-hidden="true">≡</span> Leitura linear</button>
+        <button type="button" data-toggle-flat><span aria-hidden="true">◇</span> Alternar 2D</button>
+        <button type="button" data-toggle-contrast><span aria-hidden="true">◐</span> Alternar contraste</button>
+      </div>
+    </dialog>
+
+    <dialog class="detail-dialog" id="detailDialog" aria-labelledby="detailTitle">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow" id="detailEyebrow">Olhar de perto</p>
+          <h2 id="detailTitle">Detalhe</h2>
+        </div>
+        <button class="close-button" data-close-dialog type="button" aria-label="Fechar detalhe">×</button>
+      </div>
+      <div class="dialog-content" id="detailContent"></div>
+    </dialog>
+
+    <dialog class="linear-dialog" id="linearDialog" aria-labelledby="linearTitle">
+      <div class="dialog-head sticky">
+        <div>
+          <p class="eyebrow">Versão acessível</p>
+          <h2 id="linearTitle">Leitura linear do caderno</h2>
+        </div>
+        <button class="close-button" data-close-dialog type="button" aria-label="Fechar modo leitura">×</button>
+      </div>
+      <div class="linear-content" id="linearContent"></div>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="sr-only" id="liveRegion" aria-live="polite"></div>
+
+    <noscript>
+      <p class="noscript">Ative o JavaScript para navegar pela versão interativa do caderno.</p>
+    </noscript>
+
+    <script src="script.js"></script>
+  </body>
+</html>
